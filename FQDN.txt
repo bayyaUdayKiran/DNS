@@ -1,0 +1,37 @@
+A fully qualified domain name (FQDN), sometimes also referred to as an absolute domain name, is a domain name that specifies its exact location in the tree hierarchy of the Domain Name System (DNS). It specifies all domain levels, including the top-level domain and the root zone.
+
+Domain names in DNS are read from right to left, therefore we need to know where to start from to find the explicit location of a host using a domain name. Using this information we can see how DNS requests/lookups (DNS zone checks) are processed as follows:
+
+1. The root zone, being at the top of the hierarchy, is represented simply by a full stop (period), as it is unnamed and therefore has no label. Typical DNS will use the long-established root zone which is coordinated by IANA (a department of ICANN).     Under the root zone is the Top Level Domain (TLD).
+
+2. Under these is a Second Level Domain (SLD), which is a subdomain of the TLD above it.
+
+3. Under these can be a Third Level Domain, yet another subdomain of the SLD above it.
+
+For example, in  "ex.example.com". 'com', is the Top-level Domain. 'example', is the second-level domain or can also be pronounced as a subdomain to the 'com'. 'ex', is the third-level domain and can also be considered as sub-domain for the 'example'.
+
+Each subdomain is a child domain of every domain above it (its parent domain) and separated by a full stop. With the final full stop representing the root zone. Due to the lack of a label/name for this zone, it is often not represented in many softwares such as web browsers, resulting in a DNS hierarchy ending with the top-level domain with no trailing full stop. However, this is actually only a partially qualified domain name (PQDN), since we can fairly safely assume that we want to be using the same, agreed upon, root zone to interact with the domain we want 
+
+Basically, "domain" and "subdomain" are the same entities, except that the "sub" prefix indicates a relationship between two domains. So you can basically talk of a "subdomain" only in relationship to another domain. For example google.com and corp.google.com both are domains, but corp.google.com is a subdomain of google.com. google.com itself is also a subdomain, a subdomain of top level domain (TLD) com.
+
+TLDs are the only domains that you can't talk of as "subdomains", because they don't have any higher-level domain above them.
+
+It's similar to how a file system on a computer is organized: /usr and /usr/bin are both folders, but /usr/bin is a subfolder of /usr. /usr is a subfolder of the root folder (/). The root folder is the only folder that isn't a subfolder of anything.
+
+Technically, any domain should have one or more NS records in the DNS, specifying the name server(s) serving that domain. It is possible to define a domain without it's own NS record, but this is considered trickery. One shouldn't set up DNS like that.
+
+Hostname - as said in the other answer - is just an individual name assigned to a computer. If you combine hostname with domain, you get a Fully Qualified Domain Name (FQDN), that identifies a particular computer in the DNS. Any FQDN should translate to an A record in the DNS, specifying the IP address assigned to that FQDN (or AAAA record in case of IPv6 addresses).
+
+One computer can have multiple hostnames and/or multiple FQDNs (even in different domains) which may be assigned either to the same IP address or to different IP addresses - this is fully flexible.
+
+For example, ns1.google.com is a FQDN of one of the Google's name servers. ns1 is a hostname here (we sometimes call it a hostname part of the FQDN), and google.com is a domain (similarly, a domain part of the FQDN).
+
+Note that the domain name itself may also be considered a FQDN, especially when the domain itself is also assigned an A record, as it is common nowadays (see below).
+
+www is just a specific hostname that is customarily used to identify the main web server for the given domain. So www.google.com is FQDN of Google's main web server. It is common nowadays to configure DNS so that the domain itself also has A record that refers to the same IP address that the www hostname, so typing for example https://google.com and https://www.google.com brings you to the same website.
+
+Of course hostnames/FQDNs are not used only for webservers; any computer in the network can have a hostname/FQDN. For example, Gmail's incoming and outgoing mail servers have FQDNS imap.gmail.com and smtp.gmail.com. You don't type these FQDNs into the web browser, because there's no web service on these machines; but you use them eg. when configuring your mail client to use Gmail.
+
+A partially qualified domain name does not include all labels to the DNS root. Such a name is also known as a relative domain name.[7][8] Relative domain names are often simply hostnames, i.e. the left-most label in a fully qualified name. 
+
+saturn and jupiter may be the hostnames of two devices connected to a network named PC. Within PC, the devices are addressed by their hostnames. The domain names of the devices are saturn.PC and jupiter.PC, respectively. If PC is registered as a second-level domain name in the Internet, e.g., as PC.net, the hosts may be addressed by the fully qualified domain names saturn.PC.net and jupiter.PC.net. 
